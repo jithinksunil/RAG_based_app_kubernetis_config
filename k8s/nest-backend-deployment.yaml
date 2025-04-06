@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nest-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nest-backend
+  template:
+    metadata:
+      labels:
+        app: nest-backend
+    spec:
+      containers:
+        - name: nest-backend
+          image: jithinksunil/rag_based_application:1
+          ports:
+            - containerPort: 8000
+          env:
+            - name: ACCESS_TOKEN_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: nest-backend-secrets
+                  key: ACCESS_TOKEN_SECRET
+            - name: REFRESH_TOKEN_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: nest-backend-secrets
+                  key: REFRESH_TOKEN_SECRET
+            - name: FRONTEND_URL
+              valueFrom:
+                secretKeyRef:
+                  name: nest-backend-secrets
+                  key: FRONTEND_URL
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: nest-backend-secrets
+                  key: DATABASE_URL
+            - name: PORT
+              value: 8000
