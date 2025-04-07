@@ -1,0 +1,8 @@
+<!-- Apply secrets -->
+kubectl apply -f infra/secrets/
+
+<!-- Start Redis and wait to start it -->
+kubectl apply -f infra/services/redis/
+
+<!-- Apply rest of the deployments and services -->
+kubectl apply -k infra/

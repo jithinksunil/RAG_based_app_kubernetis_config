@@ -14,14 +14,14 @@ spec:
     spec:
       containers:
         - name: python-backend
-          image: jithinksunil/rag_based_application:1
+          image: jithinksunil/rag_based_application_python:latest
           ports:
             - containerPort: 8001
           env:
             - name: DATABASE_URL
               valueFrom:
                 secretKeyRef:
-                  name: nest-backend-secrets
+                  name: python-backend-secrets
                   key: DATABASE_URL
             - name: NEST_BACKEND_BASE_URL
               value: 'http://nest-backend-service:8000/api'
