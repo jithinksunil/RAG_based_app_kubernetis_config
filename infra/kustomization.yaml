@@ -9,10 +9,6 @@ resources:
   - secrets/nest-backend-secret.yaml
   - secrets/python-backend-secret.yaml
 
-  - services/redis/redis-pvc.yaml
-  - services/redis/redis-deployment.yaml
-  - services/redis/redis-service.yaml
-
   - services/nest/nest-backend-deployment.yaml
   - services/nest/nest-backend-service.yaml
 

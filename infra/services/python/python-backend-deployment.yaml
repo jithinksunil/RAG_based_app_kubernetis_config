@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: python-backend
-          image: jithinksunil/rag_based_application_python:latest
+          image: jithinksunil/rag_based_app_python:latest
           ports:
             - containerPort: 8001
           env:
@@ -23,7 +23,25 @@ spec:
                 secretKeyRef:
                   name: python-backend-secrets
                   key: DATABASE_URL
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: python-backend-secrets
+                  key: AWS_ACCESS_KEY_ID
+            - name: AWS_BUCKET_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: python-backend-secrets
+                  key: AWS_BUCKET_NAME
+            - name: AWS_REGION
+              valueFrom:
+                secretKeyRef:
+                  name: python-backend-secrets
+                  key: AWS_REGION
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: python-backend-secrets
+                  key: AWS_SECRET_ACCESS_KEY
             - name: NEST_BACKEND_BASE_URL
               value: 'http://nest-backend-service:8000/api'
-            - name: REDIS_URL
-              value: 'redis://redis-service:6379'
